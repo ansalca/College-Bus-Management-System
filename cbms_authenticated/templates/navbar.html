@@ -1,0 +1,46 @@
+{% if user.is_authenticated %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top pl-5 pr-5">
+    <a class="navbar-brand"><img src="https://i.postimg.cc/13PwmCm5/bus-logo-image-1.png" class="nav-logo-image"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+            <a class="nav-link highlights mr-lg-3" href="{% url 'dashboard' %}" onclick="display('sectionProfile')"><i class="fas fa-user"></i> Profile</a>
+            {% if user.get_profile %}
+            {% if user.role == 'Staff' %}
+            <a class="nav-link highlights mr-lg-3" onclick="display('sectionStudents')"><i class="fas fa-user-graduate"></i> Students</a>
+            {% endif %}
+            {% endif %}
+            <a class="nav-link highlights mr-lg-3" onclick="display('sectionStaff')"><i class="fas fa-users"></i> Staff</a>
+            <a class="nav-link highlights mr-lg-3" onclick="display('sectionDriver')"><i class="fas fa-id-card"></i> Driver</a>
+            <a class="nav-link highlights mr-lg-3" onclick="display('sectionMap')"><i class="fas fa-map"></i> Location Map</a>
+            <a class="nav-link highlights mr-lg-3" onclick="display('sectionChat')"><i class="fas fa-comments"></i> Chat</a>
+        </div>
+    </div>
+</nav>
+
+{% else %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top pl-5 pr-5">
+    <a class="navbar-brand"><img src="https://i.postimg.cc/13PwmCm5/bus-logo-image-1.png" class="nav-logo-image"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link highlights mr-lg-3" href="/"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link highlights mr-lg-3" href="#servicesSection"><i class="fa-solid fa-gears"></i>
+                    Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link highlights mr-lg-3" href="#footerSection"><i class="fa-solid fa-headset"></i> Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endif %}

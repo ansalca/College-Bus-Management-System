@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>College Bus Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#3498db">
+    <link rel="stylesheet" href="{% static 'custom.css' %}">
+    <link rel="website icon" type="png" href="{% static 'college bus.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+{% include 'navbar.html' %}
+<div class="bg-container">
+    {% block content %}
+    {% endblock %}
+</div>
+<div class="bg-light text-center p-5">
+    <h2 class="heading highlights text-dark">Contact Us</h2>
+    <a href="tel:+919495060064" class="title" target="_blank"> &nbsp;+91 9495060064</a>
+    <br/>
+    <a href="mailto:ansalanu919@gmail.com" class="title" target="_blank"> &nbsp;japz01101@gmail.com</a>
+</div>
+{% include 'footer.html' %}
+<script src="{% static 'script.js' %}"></script>
+<script type="text/javascript"
+        src="https://new-assets.ccbp.in/frontend/content/static-ccbp-ui-kit/static-ccbp-ui-kit.js"></script>
+</body>
+</html>

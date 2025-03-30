@@ -1,0 +1,297 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+<div class="bg-container" xmlns="http://www.w3.org/1999/html">
+    <div id="sectionProfile">
+        <h1 class="heading mt-5">Profile</h1>
+        <p class="title highlights">Overview of user and bus tracking data.</p>
+        <div class="row d-flex flex-row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-row justify-content-center">
+                <div class="card profile-card m-5 w-100">
+                    <div>
+                        <img src="{{ user.profile_image.url }}" alt="User Image">
+                    </div>
+                    <h3 class="heading m-3">Welcome, {{ user.username }}!</h3>
+                    <b>{{ user.role }}</b>
+                    <span class="bus-route"><i class="fas fa-bus"></i>&nbsp;{{ bus.plate_number }}</span>
+                    <div class="info">
+                        <table class="table table-borderless table-hover table-sm">
+                            <tr>
+                                <th><i class="fas fa-user">&nbsp;</i>Name:</th>
+                                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-calendar-alt"></i>&nbsp;Date of Birth:</th>
+                                <td>{{ user.date_of_birth }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-envelope"></i>&nbsp;Email:</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-phone"></i>&nbsp;Phone Number:</th>
+                                <td>{{ user.contact_number }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-map-marker-alt"></i>&nbsp;Address:</th>
+                                <td>{{ user.address }}</td>
+                            </tr>
+                            {% if user.get_profile %}
+                            {% if user.role == 'Staff' %}
+                            <tr>
+                                <th><i class="fas fa-building"></i>&nbsp;Department:</th>
+                                <td>{{ user.get_profile.department }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-map-marker-alt"></i>&nbsp;Boarding Point:</th>
+                                <td>{{ user.get_profile.boarding_point }}</td>
+                            </tr>
+                            {% elif user.role == 'Student' %}
+                            <tr>
+                                <th><i class="fas fa-map-marker-alt"></i>&nbsp;Boarding Point:</th>
+                                <td>{{ user.get_profile.boarding_point }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-building"></i>&nbsp;Department:</th>
+                                <td>{{ user.get_profile.department }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-calendar-check"></i>&nbsp;Year Joined:</th>
+                                <td>{{ user.get_profile.year }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-money-bill-wave"></i>&nbsp;Bus Fare Amount:</th>
+                                <td>{{ user.get_profile.bus_fare_amount }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-receipt"></i>&nbsp;Payment Status:</th>
+                                <td>
+                                    {% if user.get_profile.payment_status %}
+                                    <i class="fas fa-check-circle text-success"></i> Paid
+                                    {% else %}
+                                    <i class="fas fa-exclamation-circle" style="color: #ff6700;"></i> Pending
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endif %}
+                        </table>
+                    </div>
+                    <a class="nav-link highlights mr-lg-3" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>
+                        Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if user.get_profile %}
+    {% if user.role == 'Staff' %}
+    <div id="sectionStudents">
+        <h1 class="heading mt-5"><i class="fas fa-user-graduate" style="color:white;"></i> Students Traveling with You</h1>
+        <a href="" class="btn m-3 custom-btn btn-1"><i class="fas fa-user-plus"></i> Add Student</a>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-light">
+                <tr class="text-center">
+                    <th>Student Photo</th>
+                    <th>Name</th>
+                    <th>Boarding Point</th>
+                    <th>Department</th>
+                    <th>Batch</th>
+                    <th>Fee Amount</th>
+                    <th>Payment Status</th>
+                    <th>Mobile Number</th>
+                </tr>
+                {% for student in students %}
+                <tr class="text-center">
+                    <td><img src="{{ student.user.profile_image.url }}"
+                             style="width: 75px; height: 75px; border-radius: 50%; border: 3px solid #007bff;"
+                             alt="Student Image"></td>
+                    <td>{{ student.user.username }}</td>
+                    <td>{{ student.boarding_point }}</td>
+                    <td>{{ student.department }}</td>
+                    <td>{{ student.batch }}</td>
+                    <td>{{ student.bus_fare_amount }}</td>
+                    <td>{% if user.get_profile.payment_status %}
+                        <i class="fas fa-check-circle text-success"></i> Paid
+                        {% else %}
+                        <i class="fas fa-exclamation-circle" style="color: #ff6700;"></i> Pending
+                        {% endif %}
+                    </td>
+                    <td>{{ student.user.contact_number}}</td>
+                    <td>
+                        <button class="btn btn-warning m-2"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Confirm Deletion</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this item? This action cannot be undone.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                                        </button>
+                                        <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+    <div id="sectionStaff">
+        <h1 class="heading mt-5">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="64"
+                 height="64" x="0" y="0" viewBox="0 0 682.667 682.667" style="enable-background:new 0 0 512 512"
+                 xml:space="preserve" class="mb-2">
+                        <g>
+                            <defs>
+                                <clipPath id="a" clipPathUnits="userSpaceOnUse">
+                                    <path d="M0 512h512V0H0Z" fill="#f8f9fa" opacity="1" data-original="#000000"></path>
+                                </clipPath>
+                            </defs>
+                            <g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 682.667)">
+                                <path d="M383.273 14.667H128.727v317.001h254.546z"
+                                      style="stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                      fill="none" stroke="#f8f9fa" stroke-width="30" stroke-linecap="butt"
+                                      stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="none"
+                                      stroke-opacity="" data-original="#000000" opacity="1" class=""></path>
+                                <path d="M0 0a34.57 34.57 0 0 1 6.145 19.722c0 19.187-15.554 34.741-34.741 34.741-19.187 0-34.741-15.554-34.741-34.741A34.574 34.574 0 0 1-57.215.032c-15.8-7.262-26.777-23.216-26.777-41.744v-26.91h110.7v26.91C26.708-23.211 15.763-7.276 0 0Z"
+                                      style="stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                      transform="translate(284.642 215.747)" fill="none" stroke="#f8f9fa"
+                                      stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter"
+                                      stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                      data-original="#000000" opacity="1" class=""></path>
+                                <path d="M0 0h95.123"
+                                      style="stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                      transform="translate(208.438 82.168)" fill="none" stroke="#f8f9fa"
+                                      stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter"
+                                      stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                      data-original="#000000" opacity="1" class=""></path>
+                                <path d="M0 0h-76L4.005-165.665h76z"
+                                      style="stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                      transform="translate(213.849 497.333)" fill="none" stroke="#f8f9fa"
+                                      stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter"
+                                      stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                      data-original="#000000" opacity="1" class=""></path>
+                                <path d="m0 0 42.151 87.281h76L38.146-78.384"
+                                      style="stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                      transform="translate(256 410.052)" fill="none" stroke="#f8f9fa" stroke-width="30"
+                                      stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                      stroke-dasharray="none" stroke-opacity="" data-original="#000000" opacity="1"
+                                      class=""></path>
+                            </g>
+                        </g>
+                    </svg>
+            &nbsp;Transportation Incharge Members
+        </h1>
+        <div class="row d-flex flex-row justify-content-center m-5">
+            {% for staff in staff_members %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="details-card m-4 title">
+                    <div>
+                        <img src="{{ staff.user.profile_image.url }}" style="border-radius:50px" class="w-25 m-3"
+                             alt="Staff Photo"/>
+                    </div>
+                    <h4>{{ staff.user.username }}</h4>
+                    <p>Department: {{ staff.department }}</p>
+                    <p>Boarding Point: {{ staff.boarding_point }}</p>
+                    <p>Phone: <a href="tel:{{ staff.user.contact_number }}">{{ staff.user.contact_number }}</a></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="sectionDriver">
+        <h1 class="heading mt-5"><i class="fas fa-id-card" style="color:white;"></i>&nbsp;Driver Details</h1>
+        <div class="row d-flex flex-row justify-content-center m-5">
+            {% if driver %}
+            <div class="details-card m-4">
+                <img src="{{ driver.user.profile_image.url }}" style="border-radius:75px" class="p-3"
+                     alt="Driver Photo"/>
+                <h4>{{ driver.user.username }}</h4>
+                <p>Phone: <a href="tel:{{ driver.phone }}" target="_blank"> {{ driver.phone }}</a></p>
+            </div>
+            {% else %}
+            <p>No driver information available.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div id="sectionMap">
+        <h1 class="heading mt-5">Live Location Map</h1>
+        <p class="title highlights">View real-time bus locations.</p>
+        <div class="m-auto">
+            <div class="w-100">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4661.468179955812!2d76.43467835952525!3d10.748977010224879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1727363409891!5m2!1sen!2sin"
+                        class="p-2 w-100" width="500" height="500" frameborder="0" style="border-radius:5%;"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <h6 class="title">BUS NO: <i class="highlights">KL07Z7116</i></h6>
+        </div>
+    </div>
+    <div id="sectionChat">
+        <h1 class="heading mt-5">Real-Time Chat</h1>
+        <div class="chat mt-4">
+            <h2 class="heading title p-4">Chat Section</h2>
+            <div class="chat-window bg-light p-2">
+                <ul class="message-list chat-messages">
+                    <div class="chat-container">
+                        <div class="user">
+                            <div class="user-pic">
+                                <svg fill="none" viewBox="0 0 24 24" height="20" width="20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linejoin="round" fill="#707277" stroke-linecap="round" stroke-width="2"
+                                          stroke="#707277"
+                                          d="M6.57757 15.4816C5.1628 16.324 1.45336 18.0441 3.71266 20.1966C4.81631 21.248 6.04549 22 7.59087 22H16.4091C17.9545 22 19.1837 21.248 20.2873 20.1966C22.5466 18.0441 18.8372 16.324 17.4224 15.4816C14.1048 13.5061 9.89519 13.5061 6.57757 15.4816Z"></path>
+                                    <path stroke-width="2" fill="#707277" stroke="#707277"
+                                          d="M16.5 6.5C16.5 8.98528 14.4853 11 12 11C9.51472 11 7.5 8.98528 7.5 6.5C7.5 4.01472 9.51472 2 12 2C14.4853 2 16.5 4.01472 16.5 6.5Z"></path>
+                                </svg>
+                            </div>
+                            <div class="user-info">
+                                <span>Yassine Zanina</span>
+                                <p>Wednesday, March 13th at 2:45pm</p>
+                            </div>
+                        </div>
+                        <p>
+                            I've been using this product for a few days now and I'm really impressed! The interface is
+                            intuitive
+                            and easy to
+                            use, and the features are exactly what I need to streamline my workflow.
+                        </p>
+                    </div>
+                </ul>
+            </div>
+            <div class="chat-input">
+                <input class="message-input" id="message-input" type="text" placeholder="Type your message here">
+                <div>
+                    <button class="send-button" id="send-button">
+                        <div class="svg-wrapper-1">
+                            <div class="svg-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                    <path fill="currentColor"
+                                          d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <span>Send</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
