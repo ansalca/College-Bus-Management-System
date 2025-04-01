@@ -1,10 +1,15 @@
-{% extends 'base_generic.html' %}
+{% extends "base_generic.html" %}
 
 {% block content %}
-<h1 class="heading mt-5">Edit Student</h1>
-<form method="post" class="form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn custom-btn btn-1">Update Student</button>
-</form>
+<div class="container mt-5">
+    <h2 class="heading highlights">Edit Student Details</h2>
+    <div class="p-5 m-auto">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ student_form.as_p }}
+            <button type="submit" class="btn btn-success">Save Changes</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
