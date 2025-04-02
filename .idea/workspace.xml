@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="86fb5522-510a-45bc-8a4d-d0585b323d99" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0002_remove_bus_current_location_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0003_alter_user_date_of_birth_alter_user_email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0004_chatmessage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0005_alter_user_contact_number.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0006_alter_user_email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0007_delete_chatmessage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Badge_of_enthusiasm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/IMG_20230719_224705_474-02.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Screenshot_2024-12-16_203849.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/WhatsApp_Image_2024-11-07_at_12.55.44_bb894272.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/amy-humphries-2M_sDJ_agvs-unsplash.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/hans-peter-gauster-3y1zF4hIPCg-unsplash.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cbms project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Picture3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Picture3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Screenshot_2025-03-11_194426.png" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Screenshot_2025-03-11_194426.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/static/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/templates/accounts/edit_student.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/templates/accounts/edit_student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/templates/dashboard.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2v7IDIq3zRSV67tEKvSWMzI27of" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ansal\Downloads\cbms project\cbms_authenticated" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-67fca87a943a-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.11799.259" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="86fb5522-510a-45bc-8a4d-d0585b323d99" name="Changes" comment="" />
+      <created>1743489567197</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743489567197</updated>
+    </task>
+    <servers />
+  </component>
+</project>

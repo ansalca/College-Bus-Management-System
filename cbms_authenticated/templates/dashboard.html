@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="bg-container" xmlns="http://www.w3.org/1999/html">
+<div class="bg-container">
     <div id="sectionProfile">
         <h1 class="heading mt-5">Profile</h1>
         <p class="title highlights">Overview of user and bus tracking data.</p>
@@ -14,7 +14,7 @@
                     </div>
                     <h3 class="heading m-3">Welcome, {{ user.username }}!</h3>
                     <b>{{ user.role }}</b>
-                    <span class="bus-route"><i class="fas fa-bus"></i>&nbsp;{{ bus.plate_number }}</span>
+                    <span class="bus-route"><i class="fas fa-bus"></i>&nbsp;Bus No: {{ bus.bus_id }}</span>
                     <div class="info">
                         <table class="table table-borderless table-hover table-sm">
                             <tr>
@@ -114,28 +114,29 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
+                                <input type="text" class="form-control" id="username" name="username" value="{{ form_data.username }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
-                                <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ form_data.first_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="last_name">Last Name</label>
-                                <input type="text" class="form-control" id="last_name" name="last_name" required>
+                                <input type="text" class="form-control" id="last_name" name="last_name" value="{{ form_data.last_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="date_of_birth">Date of Birth</label>
                                 <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
-                                       required>
+                                       required min="1970-01-01" max="2025-12-31">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ form_data.email }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="contact_number">Phone Number</label>
                                 <input type="text" class="form-control" id="contact_number" name="contact_number"
+                                       maxlength="10"
                                        required>
                             </div>
                             <div class="form-group">
@@ -145,7 +146,7 @@
                             <div class="form-group">
                                 <label for="profile_image">Profile Photo</label>
                                 <input type="file" class="form-control" id="profile_image" name="profile_image"
-                                       accept="image/*" >
+                                       accept="image/*" required>
                             </div>
                             <div class="form-group">
                                 <label for="department">Department</label>
@@ -158,7 +159,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="batch">Batch</label>
-                                <input type="text" class="form-control" id="batch" name="batch" required>
+                                <input type="text" class="form-control" id="batch" name="batch" maxlength="7" required>
                             </div>
                             <div class="form-group">
                                 <label for="bus_fare_amount">Bus Fare Amount</label>
@@ -173,16 +174,17 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="parent_email">Parent Email</label>
-                                <input type="email" class="form-control" id="parent_email" name="parent_email" required>
-                            </div>
-                            <div class="form-group">
                                 <label for="parent_name">Parent Name</label>
                                 <input type="text" class="form-control" id="parent_name" name="parent_name" required>
                             </div>
                             <div class="form-group">
+                                <label for="parent_email">Parent Email</label>
+                                <input type="email" class="form-control" id="parent_email" name="parent_email" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="parent_contact">Parent Contact Number</label>
                                 <input type="text" class="form-control" id="parent_contact" name="parent_contact"
+                                       maxlength="10"
                                        required>
                             </div>
                             <div class="form-group">
@@ -228,7 +230,11 @@
                 </div>
             </div>
         </div>
-
+        {% if messages %}
+        {% for message in messages %}
+        <p class="highlights text-warning text-center"> {{ message }}</p>
+        {% endfor %}
+        {% endif %}
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-primary">
                 <tr class="text-center bg-info">
@@ -243,25 +249,28 @@
                 </tr>
                 {% for student in students %}
                 <tr class="text-center">
-                    <td><img src="{{ student.user.profile_image.url }}"
+                    <td>
+                        <img src="{{ student.user.profile_image.url }}"
                              style="width: 75px; height: 75px; border-radius: 50%; border: 3px solid #007bff; cursor: pointer;"
-                             alt="Student Image"
-                             data-toggle="modal" data-target="#imageModal"
+                             alt="No Student Image"
+                             data-toggle="modal" data-target="#imageModal{{ student.id }}"
                              data-image-url="{{ student.user.profile_image.url }}">
 
                         <!-- Image Modal -->
-                        <div class="modal fade" id="imageModal" tabindex="-1" role="dialog"
-                             aria-labelledby="imageModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="imageModal{{ student.id }}" tabindex="-1" role="dialog"
+                             aria-labelledby="imageModalLabel{{ student.id }}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="imageModalLabel">{{ student.user.first_name }} {{ student.user.last_name }}'s Profile Photo</h5>
+                                        <h5>{{ student.user.first_name }} {{ student.user.last_name }}'s Profile
+                                            Photo</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body text-center">
-                                        <img src="" id="fullImage" class="img-fluid" alt="Student Image">
+                                        <img src="{{ student.user.profile_image.url }}" class="img-fluid"
+                                             alt="Student Image">
                                     </div>
                                 </div>
                             </div>
@@ -282,18 +291,18 @@
                     <td>
                         <a href="{% url 'update_student' student.id %}" class="btn btn-warning m-2"><i
                                 class="fas fa-edit"></i> Edit</a>
-                        <!--                        <a href="{% url 'delete_student' student.id %}" class="btn btn-danger m-2"-->
-                        <!--                           onclick="return confirm('Are you sure you want to delete this student?');"><i-->
-                        <!--                                class="fas fa-trash-alt"></i> Delete</a>-->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
+                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#staticBackdrop{{ student.id }}">
                             <i class="fas fa-trash"></i> Delete
                         </button>
-                        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
-                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="staticBackdrop{{ student.id }}" data-backdrop="static"
+                             data-keyboard="false"
+                             tabindex="-1" aria-labelledby="staticBackdropLabel{{ student.id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Confirm Deletion</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel{{ student.id }}">Confirm
+                                            Deletion</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -409,55 +418,49 @@
         </div>
     </div>
     <div id="sectionChat">
-        <h1 class="heading mt-5">Real-Time Chat</h1>
-        <div class="chat mt-4">
-            <h2 class="heading title p-4">Chat Section</h2>
-            <div class="chat-window bg-light p-2">
-                <ul class="message-list chat-messages">
-                    <div class="chat-container">
-                        <div class="user">
-                            <div class="user-pic">
-                                <svg fill="none" viewBox="0 0 24 24" height="20" width="20"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linejoin="round" fill="#707277" stroke-linecap="round" stroke-width="2"
-                                          stroke="#707277"
-                                          d="M6.57757 15.4816C5.1628 16.324 1.45336 18.0441 3.71266 20.1966C4.81631 21.248 6.04549 22 7.59087 22H16.4091C17.9545 22 19.1837 21.248 20.2873 20.1966C22.5466 18.0441 18.8372 16.324 17.4224 15.4816C14.1048 13.5061 9.89519 13.5061 6.57757 15.4816Z"></path>
-                                    <path stroke-width="2" fill="#707277" stroke="#707277"
-                                          d="M16.5 6.5C16.5 8.98528 14.4853 11 12 11C9.51472 11 7.5 8.98528 7.5 6.5C7.5 4.01472 9.51472 2 12 2C14.4853 2 16.5 4.01472 16.5 6.5Z"></path>
-                                </svg>
-                            </div>
-                            <div class="user-info">
-                                <span>Yassine Zanina</span>
-                                <p>Wednesday, March 13th at 2:45pm</p>
-                            </div>
+        <h3>Chat Section</h3>
+        <div class="chat-window bg-light p-2">
+            <ul class="message-list chat-messages">
+                {% for message in messages %}
+                <div class="chat-container">
+                    <div class="user">
+                        <div class="user-info">
+                            <span>{{ message.user.username }}</span>
+                            <p>{{ message.timestamp }}</p>
                         </div>
-                        <p>
-                            I've been using this product for a few days now and I'm really impressed! The interface is
-                            intuitive
-                            and easy to
-                            use, and the features are exactly what I need to streamline my workflow.
-                        </p>
                     </div>
-                </ul>
-            </div>
-            <div class="chat-input">
-                <input class="message-input" id="message-input" type="text" placeholder="Type your message here">
-                <div>
-                    <button class="send-button" id="send-button">
-                        <div class="svg-wrapper-1">
-                            <div class="svg-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path fill="none" d="M0 0h24v24H0z"></path>
-                                    <path fill="currentColor"
-                                          d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <span>Send</span>
-                    </button>
+                    <p>{{ message.message }}</p>
                 </div>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="chat-input">
+            <input class="message-input" id="message-input" type="text" placeholder="Type your message here">
+            <div>
+                <button class="send-button" id="send-button">
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path fill="currentColor"
+                                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <span>Send</span>
+                </button>
             </div>
         </div>
     </div>
+
+    {% if show_modal %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            $('#{{ show_modal }}').modal('show');  // Open the specified modal
+        });
+    </script>
+    {% endif %}
+
 </div>
+
 {% endblock %}
