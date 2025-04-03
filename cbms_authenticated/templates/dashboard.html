@@ -114,30 +114,33 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" value="{{ form_data.username }}" required>
+                                <input type="text" class="form-control" id="username" name="username"
+                                       value="{{ form_data.username }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
-                                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ form_data.first_name }}" required>
+                                <input type="text" class="form-control" id="first_name" name="first_name"
+                                       value="{{ form_data.first_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="last_name">Last Name</label>
-                                <input type="text" class="form-control" id="last_name" name="last_name" value="{{ form_data.last_name }}" required>
+                                <input type="text" class="form-control" id="last_name" name="last_name"
+                                       value="{{ form_data.last_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="date_of_birth">Date of Birth</label>
                                 <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
-                                       required min="1970-01-01" max="2025-12-31">
+                                       required min="1970-01-01" max="2010-12-31">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ form_data.email }}" required>
+                                <input type="email" class="form-control" id="email" name="email"
+                                       value="{{ form_data.email }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="contact_number">Phone Number</label>
                                 <input type="text" class="form-control" id="contact_number" name="contact_number"
-                                       maxlength="10"
-                                       required>
+                                       maxlength="10" pattern="\d*" title="Only numbers are allowed" required>
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
@@ -184,8 +187,7 @@
                             <div class="form-group">
                                 <label for="parent_contact">Parent Contact Number</label>
                                 <input type="text" class="form-control" id="parent_contact" name="parent_contact"
-                                       maxlength="10"
-                                       required>
+                                       maxlength="10" pattern="\d*" title="Only numbers are allowed" required>
                             </div>
                             <div class="form-group">
                                 <label for="parent_password">Parent Password</label>
