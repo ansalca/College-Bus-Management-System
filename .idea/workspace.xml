@@ -4,38 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86fb5522-510a-45bc-8a4d-d0585b323d99" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0002_remove_bus_current_location_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0003_alter_user_date_of_birth_alter_user_email.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0004_chatmessage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0005_alter_user_contact_number.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0006_alter_user_email.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0007_delete_chatmessage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Badge_of_enthusiasm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/IMG_20230719_224705_474-02.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Screenshot_2024-12-16_203849.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/WhatsApp_Image_2024-11-07_at_12.55.44_bb894272.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/amy-humphries-2M_sDJ_agvs-unsplash.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/hans-peter-gauster-3y1zF4hIPCg-unsplash.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cbms project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="86fb5522-510a-45bc-8a4d-d0585b323d99" name="Changes" comment="CBMS_4">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/migrations/0002_alter_user_profile_image.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cbms_authenticated/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/cbms_authenticated/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/cbms_authenticated/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cbms_authenticated/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Picture3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Picture3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Screenshot_2025-03-11_194426.png" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/media/profile_images/Screenshot_2025-03-11_194426.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cbms_authenticated/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/static/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbms_authenticated/templates/accounts/edit_student.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/templates/accounts/edit_student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/templates/base_generic.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/templates/base_generic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cbms_authenticated/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbms_authenticated/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/cbms_authenticated/templates/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,11 +43,17 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ansal/Downloads/cbms project/cbms_authenticated/static&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ansal\Downloads\cbms project\cbms_authenticated\static" />
+      <recent name="C:\Users\ansal\Downloads\cbms project\cbms_authenticated\media" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ansal\Downloads\cbms project\cbms_authenticated\media\profile_images" />
       <recent name="C:\Users\ansal\Downloads\cbms project\cbms_authenticated" />
     </key>
   </component>
@@ -86,6 +73,27 @@
       <option name="presentableId" value="Default" />
       <updated>1743489567197</updated>
     </task>
+    <task id="LOCAL-00001" summary="CBMS_4">
+      <option name="closed" value="true" />
+      <created>1743667830060</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743667830060</updated>
+    </task>
+    <task id="LOCAL-00002" summary="CBMS_4">
+      <option name="closed" value="true" />
+      <created>1743668007208</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743668007208</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="CBMS_4" />
+    <option name="LAST_COMMIT_MESSAGE" value="CBMS_4" />
   </component>
 </project>

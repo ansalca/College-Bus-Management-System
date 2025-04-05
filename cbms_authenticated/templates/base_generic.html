@@ -32,8 +32,112 @@
     <a href="tel:+919495060064" class="title" target="_blank"> &nbsp;+91 9495060064</a>
     <br/>
     <a href="mailto:ansalanu919@gmail.com" class="title" target="_blank"> &nbsp;japz01101@gmail.com</a>
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide p-3" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        To try out staff accessibilities<br/>username: sreejis<br/>password:staf@1234
+    </div>
+    <div class="carousel-item">
+      To try out student accessibilities<br/>username: student1<br/>password: stud@123<br/>
+    </div>
+    <div class="carousel-item">
+        To try out Parent accessibilities<br/>username: parent1@example.com<br/>password: parentpassword1<br/>
+    </div>
+  </div>
+</div>
 </div>
 {% include 'footer.html' %}
+<script>
+    let map;
+    let marker;
+    let currentPosition;
+    const liveLocationURL = "{{ live_location_url }}";
+
+    function initMap() {
+        console.log("Initializing map...");
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 0, lng: 0 },
+            zoom: 2
+        });
+        marker = new google.maps.Marker({
+            map: map,
+            title: 'Bus Location'
+        });
+
+        console.log("Map initialized successfully.");
+
+        // Fetch and update location every 10 seconds
+        setInterval(fetchAndUpdateLocation, 10000);
+
+        // Add event listener to the refresh button
+        document.getElementById('refreshButton').addEventListener('click', fetchAndUpdateLocation);
+
+        // Add event listener to the zoom and locate button
+        document.getElementById('zoomLocateButton').addEventListener('click', zoomAndLocate);
+    }
+
+    function fetchAndUpdateLocation() {
+        console.log("Fetching live location...");
+
+        // Use the Geolocation API to get the current location with high accuracy
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    currentPosition = { lat: lat, lng: lng }; // Store current position
+
+                    // Update marker position
+                    marker.setPosition(currentPosition);
+                    map.setCenter(currentPosition);
+
+                    // Update the displayed latitude and longitude
+                    document.getElementById('latitude').textContent = lat;
+                    document.getElementById('longitude').textContent = lng;
+
+                    console.log("Live location data:", currentPosition);
+                },
+                (error) => {
+                    console.error("Error fetching location:", error);
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            alert("User denied the request for Geolocation.");
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            alert("Location information is unavailable.");
+                            break;
+                        case error.TIMEOUT:
+                            alert("The request to get user location timed out.");
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            alert("An unknown error occurred.");
+                            break;
+                    }
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                }
+            );
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function zoomAndLocate() {
+        if (currentPosition) {
+            map.setZoom(15); // Set zoom level
+            map.setCenter(currentPosition); // Center the map on the current position
+            console.log("Zooming and locating to:", currentPosition);
+        } else {
+            console.error("Current position is not available.");
+        }
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRGVIFAohumicA4ffHveGC9Wsw27bYlAA&callback=initMap" async defer></script>
+
 <script src="{% static 'script.js' %}"></script>
 <script type="text/javascript"
         src="https://new-assets.ccbp.in/frontend/content/static-ccbp-ui-kit/static-ccbp-ui-kit.js"></script>

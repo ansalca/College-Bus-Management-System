@@ -63,6 +63,7 @@ def dashboard(request):
         students = None
         staff_members = None
         driver = None
+    live_location_url = bus.live_location_url if bus else None
 
     return render(
         request,
@@ -74,7 +75,7 @@ def dashboard(request):
             'students': students,
             'staff_members': staff_members,
             'driver': driver,
-            'MEDIA_URL': settings.MEDIA_URL,
+            'live_location_url': live_location_url,
         }
     )
 
@@ -137,7 +138,7 @@ def add_student(request):
 
         messages.success(request, 'Student added successfully!')
         return redirect('dashboard')
-    return render(request, 'add_student.html')
+    return render(request, 'dashboard.html')
 
 @login_required
 def bulk_upload_students(request):

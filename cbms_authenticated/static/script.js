@@ -6,4 +6,3 @@
     var modal = $(this);
     modal.find('.modal-body #fullImage').attr('src', imageUrl);
   });
-

@@ -56,8 +56,8 @@ class BusAdmin(admin.ModelAdmin):
 
 # Custom Driver admin
 class DriverAdmin(admin.ModelAdmin):
-    list_display = ('user', 'phone')
-    search_fields = ('user__username', 'phone')
+    list_display = ('user', )
+    search_fields = ('user__username',)
 
 
 # Register all models with their custom admin configurations

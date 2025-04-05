@@ -383,7 +383,7 @@
                         <img src="{{ staff.user.profile_image.url }}" style="border-radius:50px" class="w-25 m-3"
                              alt="Staff Photo"/>
                     </div>
-                    <h4>{{ staff.user.username }}</h4>
+                    <h4>{{ staff.user.first_name }} {{ staff.user.last_name }}</h4>
                     <p>Department: {{ staff.department }}</p>
                     <p>Boarding Point: {{ staff.boarding_point }}</p>
                     <p>Phone: <a href="tel:{{ staff.user.contact_number }}">{{ staff.user.contact_number }}</a></p>
@@ -397,10 +397,10 @@
         <div class="row d-flex flex-row justify-content-center m-5">
             {% if driver %}
             <div class="details-card m-4">
-                <img src="{{ driver.user.profile_image.url }}" style="border-radius:75px" class="p-3"
+                <img src="{{ driver.user.profile_image.url }}" style="border-radius:100px; width:200px; height:200px;" class="p-3"
                      alt="Driver Photo"/>
                 <h4>{{ driver.user.username }}</h4>
-                <p>Phone: <a href="tel:{{ driver.phone }}" target="_blank"> {{ driver.phone }}</a></p>
+                <p>Phone: <a href="tel:{{ driver.user.contact_number }}" target="_blank"> {{ driver.user.contact_number }}</a></p>
             </div>
             {% else %}
             <p>No driver information available.</p>
@@ -410,58 +410,20 @@
     <div id="sectionMap">
         <h1 class="heading mt-5">Live Location Map</h1>
         <p class="title highlights">View real-time bus locations.</p>
-        <div class="m-auto">
-            <div class="w-100">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4661.468179955812!2d76.43467835952525!3d10.748977010224879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1727363409891!5m2!1sen!2sin"
-                        class="p-2 w-100" width="500" height="500" frameborder="0" style="border-radius:5%;"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <h6 class="title">BUS NO: <i class="highlights">KL07Z7116</i></h6>
+        <div id="map" style="height: 500px; width: 100%;"></div>
+        <div class="text-center">
+        <button id="refreshButton" class="btn btn-success m-3">Refresh Location</button>
+        <button id="zoomLocateButton" class="btn btn-primary m-3">Zoom and Locate</button>
         </div>
-    </div>
-    <div id="sectionChat">
-        <h3>Chat Section</h3>
-        <div class="chat-window bg-light p-2">
-            <ul class="message-list chat-messages">
-                {% for message in messages %}
-                <div class="chat-container">
-                    <div class="user">
-                        <div class="user-info">
-                            <span>{{ message.user.username }}</span>
-                            <p>{{ message.timestamp }}</p>
-                        </div>
-                    </div>
-                    <p>{{ message.message }}</p>
-                </div>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="chat-input">
-            <input class="message-input" id="message-input" type="text" placeholder="Type your message here">
-            <div>
-                <button class="send-button" id="send-button">
-                    <div class="svg-wrapper-1">
-                        <div class="svg-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                <path fill="currentColor"
-                                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <span>Send</span>
-                </button>
-            </div>
+        <div id="locationInfo" class="m-auto p-3">
+            <p class="text-white">Check out the exact location using lattitude and longitude</p>
+            <p class="text-white highlights">Latitude: <span id="latitude"></span></p>
+            <p class="text-white highlights">Longitude: <span id="longitude"></span></p>
         </div>
     </div>
 
-    {% if show_modal %}
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            $('#{{ show_modal }}').modal('show');  // Open the specified modal
-        });
-    </script>
-    {% endif %}
+
+
 
 </div>
 

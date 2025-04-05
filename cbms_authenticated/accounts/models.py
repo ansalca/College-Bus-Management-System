@@ -47,7 +47,7 @@ class User(AbstractUser):
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Student')
     address = models.CharField(max_length=255, blank=True, null=True)
     date_of_birth = models.DateField(null=True, blank=True, validators=[validate_age], help_text="Enter your birthdate in YYYY-MM-DD format.")
-    profile_image = models.ImageField(upload_to='profile_images/', default='profiledefault_profile.png')
+    profile_image = models.ImageField(upload_to='profile_images/', default='default_profile.png')
     groups = models.ManyToManyField(Group, related_name='custom_user_groups', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='custom_user_permissions', blank=True)
 
@@ -96,19 +96,19 @@ class Parent(models.Model):
 
 # Bus Model
 class Bus(models.Model):
-    bus_id = models.PositiveIntegerField()
+    bus_id = models.CharField(max_length=3, unique=True)
     plate_number = models.CharField(max_length=50, unique=True)
     capacity = models.PositiveIntegerField()
     driver = models.OneToOneField('Driver', on_delete=models.SET_NULL, null=True, blank=True, related_name='bus')
+    live_location_url = models.URLField(max_length=500, blank=True, null=True)
 
     def __str__(self):
-        return self.plate_number
+        return self.bus_id
 
 
 # Driver Model
 class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=15)
 
     def __str__(self):
         return self.user.username
